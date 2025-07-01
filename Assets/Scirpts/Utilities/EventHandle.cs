@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static DialogueData_SO;
 
 public static class EventHandle
 {   
@@ -46,5 +48,41 @@ public static class EventHandle
     public static void CallChangeItemEvent(int index)
     {
         ChangeItemEvent?.Invoke(index);
+    }
+
+    //对话事件
+    public static event Action<DialogueData_SO.DialogueLine> StartDialogueEvent;
+
+    public static void CallStartDialogueEvent(DialogueData_SO.DialogueLine dialogueLine)
+    {
+        StartDialogueEvent?.Invoke(dialogueLine);
+    }
+
+    public static event Action<DialogueData_SO.DialogueLine> UpdateDialogueEvent;
+
+    public static void CallUpdateDialogueEvent(DialogueData_SO.DialogueLine dialogueLine)
+    {
+        UpdateDialogueEvent?.Invoke(dialogueLine);
+    }
+
+    public static event Action EndDialogerEvent;
+
+    public static void CallEndDialogerEvent()
+    {
+        EndDialogerEvent?.Invoke();
+    }
+
+    public static event Action<List<DialogueData_SO.DialogueLine>> ChoicesAvailableEvent;
+
+    public static void CallChoicesAvailableEvent(List<DialogueData_SO.DialogueLine> dialogueLines)
+    {
+        ChoicesAvailableEvent.Invoke(dialogueLines);
+    }
+
+    public static event Action<int> ChoiceSelectedEvent;
+
+    public static void CallChoiceSelectedEvent(int choice)
+    {
+        ChoiceSelectedEvent.Invoke(choice);
     }
 }
