@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
@@ -14,8 +15,9 @@ public class DialogueManager : Singleton<DialogueManager>
     // ¶Ô»°×´Ì¬
     public bool IsDialogueActive { get; private set; } = false;
 
-    private void Start()
-    {
+    protected override void Awake()
+    {   
+        base.Awake();
         InitializeImageDictionary();
         SubscribeEvents();
     }
@@ -23,10 +25,11 @@ public class DialogueManager : Singleton<DialogueManager>
     // ³õÊ¼»¯Í¼Æ¬×Öµä
     private void InitializeImageDictionary()
     {
-        Sprite[] allSprites = Resources.LoadAll<Sprite>("Portraits");
+        Sprite[] allSprites = Resources.LoadAll<Sprite>("");
         foreach (Sprite sprite in allSprites)
         {
             imageDictionary[sprite.name] = sprite;
+            Debug.Log(sprite.name);
         }
     }
 
@@ -43,6 +46,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         currentDialogue = dialogue;
         currentIndex = 0;
+        currentDialogue.ParseCSV();
         currentLine = currentDialogue.GetLineByIndex(currentIndex);
 
         if (currentLine == null)
@@ -61,6 +65,11 @@ public class DialogueManager : Singleton<DialogueManager>
         if (!IsDialogueActive) return;
 
         currentIndex = currentLine.nextIndex;
+        if (currentIndex == 9999)
+        {
+            EndDialogue();
+            return;
+        }
         currentLine = currentDialogue.GetLineByIndex(currentIndex);
 
         if (currentLine == null)

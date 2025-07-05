@@ -16,10 +16,11 @@ public class DialogueUI : Singleton<DialogueUI>
     [SerializeField] private Image rightImage;
     [SerializeField] private GameObject choicesPanel;
     [SerializeField] private GameObject choiceButtonPrefab;
+    [SerializeField] private GameObject clickArea;
 
     [Header("动画参数")]
     [SerializeField] private float fadeDuration = 0.5f; // 淡入淡出时间
-    [SerializeField] private Color fadeColor = new Color(0, 0, 0, 0.7f); // 遮罩颜色
+    [SerializeField] private Color fadeColor = new Color(0, 0, 0, 150); // 遮罩颜色
 
     private float originalTimeScale; // 保存原始时间缩放
     private string fullText;
@@ -30,6 +31,45 @@ public class DialogueUI : Singleton<DialogueUI>
     {
         HideDialogueUI();
         SubscribeEvents();
+        Button clickButton = clickArea.GetComponent<Button>();
+        if (clickButton != null)
+        {
+            clickButton.onClick.AddListener(OnClickAreaClicked);
+        }
+    }
+    // 点击区域被点击时调用
+    private void OnClickAreaClicked()
+    {
+        if (isTyping)
+        {
+            // 如果正在打字，加速显示全部文本
+            StopAllCoroutines();
+            dialogueText.text = fullText;
+            isTyping = false;
+        }
+        else if (choicesPanel.activeSelf)
+        {
+            // 如果选项面板可见，不处理点击（防止误触）
+            return;
+        }
+        else
+        {
+            // 否则继续对话
+            DialogueManager.Instance.ContinueDialogue();
+        }
+    }
+    private void Update()
+    {
+        if (choicesPanel.activeSelf) return;
+
+        // 检测继续按键
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!choicesPanel.activeSelf)
+            {
+                OnClickAreaClicked();
+            }
+        }
     }
 
     private void SubscribeEvents()
@@ -152,10 +192,16 @@ public class DialogueUI : Singleton<DialogueUI>
         isTyping = true;
         dialogueText.text = "";
 
-        foreach (char c in fullText)
+        System.Globalization.StringInfo stringInfo = new System.Globalization.StringInfo(fullText);
+        int charCount = stringInfo.LengthInTextElements;
+
+        for (int i = 0; i < charCount; i++)
         {
-            dialogueText.text += c;
-            yield return new WaitForSeconds(typingSpeed);
+            // 获取完整字符（可能由多个Unicode码点组成）
+            string nextChar = stringInfo.SubstringByTextElements(i, 1);
+            dialogueText.text += nextChar;
+
+            yield return new WaitForSecondsRealtime(typingSpeed);
         }
 
         isTyping = false;
@@ -192,6 +238,7 @@ public class DialogueUI : Singleton<DialogueUI>
         dialogueCanvas.enabled = false;
         choicesPanel.SetActive(false);
     }
+
 
     // 继续对话（用于无选项时的"继续"按钮）
     public void ContinueButtonClicked()

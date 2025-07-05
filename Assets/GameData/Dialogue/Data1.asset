@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3257767f08965e4f87f2ea7d9e78499, type: 3}
+  m_Name: Data1
+  m_EditorClassIdentifier: 
+  dialogueCSV: {fileID: 4900000, guid: 16ef70ca5191d214790eb5f9ec95ec55, type: 3}
+  dialogueLines:
+  - index: 0
+    speaker: Alice
+    imageName: Alice_Default
+    position: 0
+    text: "\u4F60\u6210\u529F\u4E86"
+    nextIndex: 1
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 
+  - index: 1
+    speaker: Alice
+    imageName: Alice_Default
+    position: 0
+    text: 111
+    nextIndex: 2
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 
+  - index: 2
+    speaker: Alice
+    imageName: Alice_Default
+    position: 1
+    text: 222
+    nextIndex: 3
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 
+  - index: 3
+    speaker: Alice
+    imageName: Alice_Happy
+    position: 1
+    text: 333
+    nextIndex: 4
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 
+  - index: 4
+    speaker: Alice
+    imageName: Alice_Happy
+    position: 2
+    text: 444
+    nextIndex: 5
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 
+  - index: 5
+    speaker: Alice
+    imageName: Alice_Happy
+    position: 2
+    text: "\u8FD9\u662F\u6700\u540E\u4E00\u53E5\u8BDD"
+    nextIndex: 6
+    isChoice: 0
+    choiceLabels: []
+    choiceNextIndices: 

@@ -1,0 +1,7 @@
+﻿Index,Speaker,ImageName,Position,Text,NextInex,IsChoice,Choices
+0,Alice,Alice_Default,Left,你成功了,1,FALSE,
+1,Alice,Alice_Default,Left,111,2,FALSE,
+2,Alice,Alice_Default,Center,222,3,FALSE,
+3,Alice,Alice_Happy,Center,333,4,FALSE,
+4,Alice,Alice_Happy,Right,444,5,FALSE,
+5,Alice,Alice_Happy,Right,这是最后一句话,9999,FALSE,

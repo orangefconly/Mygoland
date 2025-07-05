@@ -589,11 +589,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359640493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09bf4e4709382464c92ab44c17007f2e, type: 3}
+  m_Script: {fileID: 11500000, guid: dc32df721cfb1ab4ba7ed94af83a211a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   requireItem: 2
   isDone: 0
+  dialogueData1: {fileID: 11400000, guid: 2780467dff5443c4896c84f2dfd7476c, type: 2}
+  dialogueData2: {fileID: 11400000, guid: 2780467dff5443c4896c84f2dfd7476c, type: 2}
 --- !u!1 &1837599988
 GameObject:
   m_ObjectHideFlags: 0

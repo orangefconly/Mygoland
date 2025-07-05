@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CursorManager : Singleton<CursorManager>
 {
     public RectTransform hand;
+
+    public Image handImage;
     //获取鼠标坐标位置：把鼠标的坐标变换到摄像机（屏幕）所对应的位置
     private Vector3 mouseWorldPos => Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
 
@@ -50,6 +53,7 @@ public class CursorManager : Singleton<CursorManager>
         {
             currentItem = itemDetails.itemName;
         }
+        handImage.sprite = itemDetails.itemSprite;
         hand.gameObject.SetActive(holdItem);
     }
 
