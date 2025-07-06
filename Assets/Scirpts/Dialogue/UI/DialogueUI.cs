@@ -99,7 +99,7 @@ public class DialogueUI : Singleton<DialogueUI>
     // 背景淡入
     private IEnumerator FadeInBackground()
     {
-        float elapsedTime = 0f;
+        float elapsedTime = 0.5f;
 
         while (elapsedTime < fadeDuration)
         {
@@ -118,7 +118,7 @@ public class DialogueUI : Singleton<DialogueUI>
     {
         dialogueBox.SetActive(false);
 
-        float elapsedTime = 0f;
+        float elapsedTime = 0.5f;
         Color startColor = backgroundPanel.color;
 
         while (elapsedTime < fadeDuration)
@@ -140,6 +140,7 @@ public class DialogueUI : Singleton<DialogueUI>
     private void UpdateDialogue(DialogueData_SO.DialogueLine line)
     {
         choicesPanel.SetActive(false);
+        clickArea.SetActive(true);
         UpdateDialogueUI(line);
     }
 
@@ -210,12 +211,13 @@ public class DialogueUI : Singleton<DialogueUI>
     // 显示选项
     private void ShowChoices(List<DialogueData_SO.DialogueLine> choices)
     {
+        Debug.Log("触发选项");
         // 清除旧选项
         foreach (Transform child in choicesPanel.transform)
         {
             Destroy(child.gameObject);
         }
-
+        clickArea.gameObject.SetActive(false);
         // 创建新选项
         foreach (DialogueData_SO.DialogueLine choice in choices)
         {
@@ -239,7 +241,7 @@ public class DialogueUI : Singleton<DialogueUI>
         choicesPanel.SetActive(false);
     }
 
-
+    /*
     // 继续对话（用于无选项时的"继续"按钮）
     public void ContinueButtonClicked()
     {
@@ -255,4 +257,5 @@ public class DialogueUI : Singleton<DialogueUI>
             isTyping = false;
         }
     }
+    */
 }

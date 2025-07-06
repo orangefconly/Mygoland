@@ -44,6 +44,14 @@ public class InventoryUI : Singleton<InventoryUI>
     public void SwitchItem(int count)
     {
         var listCount = InventoryManager.Instance.GetitemListCount();
+        if (listCount < 1) 
+        {
+            slotUI.SetEmpty();
+            currentIndex = -1;
+            leftButton.interactable = false;
+            rightButton.interactable = false;
+            return;
+        }
         var index = currentIndex + count;
         if (index < 0)
             index = listCount - 1;

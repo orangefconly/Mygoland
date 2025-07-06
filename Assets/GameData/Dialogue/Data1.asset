@@ -64,7 +64,7 @@ MonoBehaviour:
     imageName: Alice_Happy
     position: 2
     text: "\u8FD9\u662F\u6700\u540E\u4E00\u53E5\u8BDD"
-    nextIndex: 6
+    nextIndex: 9999
     isChoice: 0
     choiceLabels: []
     choiceNextIndices: 

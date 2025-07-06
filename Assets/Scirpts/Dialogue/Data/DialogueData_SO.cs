@@ -53,7 +53,7 @@ public class DialogueData_SO : ScriptableObject
             };
 
             // 如果是选项行，解析选项文本和目标索引
-            if (line.isChoice && values.Length > 7)
+            if (line.isChoice)
             {
                 string[] choiceData = values[7].Split(';');
                 line.choiceLabels = new string[choiceData.Length];
