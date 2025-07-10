@@ -241,6 +241,7 @@ public class DialogueUI : Singleton<DialogueUI>
         choicesPanel.SetActive(false);
     }
 
+    public bool IsDisplayed => Instance.dialogueCanvas.enabled;
     /*
     // 继续对话（用于无选项时的"继续"按钮）
     public void ContinueButtonClicked()

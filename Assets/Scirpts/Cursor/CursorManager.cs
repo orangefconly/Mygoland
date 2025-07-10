@@ -18,10 +18,16 @@ public class CursorManager : Singleton<CursorManager>
 
     private ItemName currentItem;
     private void Update()
-    {
+    {   
+        //对话UI显示的话，暂停点击获取功能
+        if (DialogueUI.Instance.IsDisplayed)
+        { 
+            return;
+        }
         Collider2D hit = ObjectAtMousePosition();
         canClick = hit != null;
 
+        
         //手激活了的话，要跟随鼠标位置
         if (hand.gameObject.activeInHierarchy)
         {

@@ -29,7 +29,6 @@ public class DialogueManager : Singleton<DialogueManager>
         foreach (Sprite sprite in allSprites)
         {
             imageDictionary[sprite.name] = sprite;
-            Debug.Log(sprite.name);
         }
     }
 
