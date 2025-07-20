@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 1292971448325723563}
   - component: {fileID: 7263379170014574865}
   m_Layer: 0
-  m_Name: Card
+  m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: {fileID: 7393073520587649037}
   title: {fileID: 1616690063230008474}
-  number: {fileID: 7358899912028959937}
+  mana: {fileID: 7358899912028959937}
   imageSR: {fileID: 8429685529740248402}
   wrapper: {fileID: 6641062840654974292}
 --- !u!1 &7745677874759991083
