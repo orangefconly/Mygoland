@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SystemTest : MonoBehaviour
 {
+    /*
     [SerializeField] private HandView handView;
 
     [SerializeField] private CardData cardData;
@@ -16,5 +17,13 @@ public class SystemTest : MonoBehaviour
             CardView cardView = CardViewCreator.Instance.CreateCardView(card, transform.position, Quaternion.identity);
             StartCoroutine(handView.CardAdd(cardView));
         }
+    }
+    */
+
+    [SerializeField] private List<CardData> deckData;
+
+    private void Start()
+    {
+        CardSystem.Instance.Setup(deckData);
     }
 }
