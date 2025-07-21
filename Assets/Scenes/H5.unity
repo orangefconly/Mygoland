@@ -193,11 +193,12 @@ Transform:
   m_GameObject: {fileID: 622623653}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.311286, y: 0.5290169, z: 28.309462}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 888649819}
+  - {fileID: 1845983480}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &888649818
@@ -278,6 +279,98 @@ Transform:
   - {fileID: 1331257376}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1294088773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1292971448325723563, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113009780912107679, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00000056147576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494996812298626613, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660701524742001930, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_Name
+      value: CardView_Hover
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660701524742001930, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+--- !u!114 &1294088774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7263379170014574865, guid: c688c541c57f2264787a51f9d65c2503, type: 3}
+  m_PrefabInstance: {fileID: 1294088773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d813a36bde9c640a4cbdf3a9e2a902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1330496333
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,11 +632,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 364730290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1845983479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845983480}
+  - component: {fileID: 1845983481}
+  m_Layer: 0
+  m_Name: CardViewHoverSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845983480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845983479}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 622623654}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1845983481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845983479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0da172ea2675c4f9b9615be80856ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardViewHover: {fileID: 1294088774}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1330496335}
+  - {fileID: 1294088773}
   - {fileID: 364730290}
   - {fileID: 1118798386}
   - {fileID: 622623654}
