@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CardSystem : Singleton<CardSystem>
@@ -9,15 +10,23 @@ public class CardSystem : Singleton<CardSystem>
     [SerializeField] private Transform drawPilePoint;
     [SerializeField] private Transform discardPilePoint;
 
+    public TMP_Text drawPileAmount;
+    public TMP_Text discardPileAmount;
+
     private readonly List<Card> drawPile = new List<Card>();
     private readonly List<Card> discardPile = new List<Card>();
     private readonly List<Card> hand = new List<Card>();
 
-
+    private void Update()
+    {
+        drawPileAmount.text = drawPile.Count.ToString();
+        discardPileAmount.text = discardPile.Count.ToString();
+    }
     private void OnEnable()
     {
         ActionSystem.AttachPerformer<DrawCardsGA>(DrawCardsPerformer);
         ActionSystem.AttachPerformer<DisCardAllCardsGA>(DisCardAllCardsPerformer);
+        ActionSystem.AttachPerformer<PlayCardGA>(PlayCardPerformer);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
@@ -26,6 +35,7 @@ public class CardSystem : Singleton<CardSystem>
     {
         ActionSystem.DetachPerformer<DrawCardsGA>();
         ActionSystem.DetachPerformer<DisCardAllCardsGA>();
+        ActionSystem.DetachPerformer<PlayCardGA>();
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
@@ -40,11 +50,20 @@ public class CardSystem : Singleton<CardSystem>
     }
     private IEnumerator DrawCardsPerformer (DrawCardsGA drawCardsGA)
     {
-        int actualAmount = Mathf.Min(drawCardsGA.Amout,drawPile.Count);
-        int notDrawAmount = drawCardsGA.Amout - actualAmount;
+        int actualAmount = Mathf.Min(drawCardsGA.Amount,drawPile.Count);
+        int notDrawAmount = drawCardsGA.Amount - actualAmount;
         for (int i = 0; i < actualAmount; i++)
         {
             yield return DrawCard();
+        }
+        if(notDrawAmount>discardPile.Count)
+        {
+            RefillDeck();
+            for (int i = 0; i < discardPile.Count; i++)
+            {
+                yield return DrawCard();
+            }
+            notDrawAmount = 0;
         }
         if (notDrawAmount > 0)
         {
@@ -59,13 +78,28 @@ public class CardSystem : Singleton<CardSystem>
     {
         foreach (var card in hand)
         {
-            discardPile.Add(card);
             CardView cardView = handView.RemoveCard(card);
             yield return DiscardCard(cardView);
         }
         hand.Clear();
     }
 
+    private IEnumerator PlayCardPerformer(PlayCardGA playCardGA)
+    {
+        hand.Remove(playCardGA.Card);
+        CardView cardView = handView.RemoveCard(playCardGA.Card);
+        //这里调用的丢弃卡牌是动画上的
+        yield return DiscardCard(cardView);
+
+        SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
+        ActionSystem.Instance.AddRection(spendManaGA);
+
+        foreach (var effect in playCardGA.Card.Effects)
+        {
+            PerformEffectGA performEffectGA = new(effect);
+            ActionSystem.Instance.AddRection(performEffectGA);
+        }
+    }
     private void EnemyTurnPreReaction(EnemyTurnGA enemyTurnGA)
     {
         DisCardAllCardsGA disCardAllCardsGA = new();
@@ -76,6 +110,8 @@ public class CardSystem : Singleton<CardSystem>
     {
         DrawCardsGA drawCardsGA = new(5);
         ActionSystem.Instance.AddRection(drawCardsGA);
+        RefillManaGA refillManaGA = new();
+        ActionSystem.Instance.AddRection(refillManaGA);
     }
     private IEnumerator DrawCard()
     {
@@ -87,12 +123,13 @@ public class CardSystem : Singleton<CardSystem>
 
     private void RefillDeck()
     {
-        drawPile.AddRange(hand);
+        drawPile.AddRange(discardPile);
         discardPile.Clear();  
     }
 
     private IEnumerator DiscardCard(CardView cardView)
     {
+        discardPile.Add(cardView.Card);
         cardView.transform.DOScale(Vector3.zero, 0.2f);
         Tween tween = cardView.transform.DOMove(discardPilePoint.position, 0.2f);
         yield return tween.WaitForCompletion();

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class DrawCardsGA : GameAction
 {
-    public int Amout {  get; private set; }
+    public int Amount {  get; private set; }
 
-    public DrawCardsGA(int amout)
+    public DrawCardsGA(int amount)
     {
-        Amout = amout;
+        Amount = amount;
     }
 }

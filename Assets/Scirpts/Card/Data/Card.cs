@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Card
@@ -6,6 +7,7 @@ public class Card
     
     public string Title => cardData.name;
 
+    public List<Effect> Effects =>cardData.Effects;
     public string Description =>cardData.Description;
 
     public Sprite Image => cardData.Image;

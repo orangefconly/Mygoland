@@ -18,7 +18,7 @@ public class SystemTest : MonoBehaviour
             StartCoroutine(handView.CardAdd(cardView));
         }
     }
-    */
+   *****
 
     [SerializeField] private List<CardData> deckData;
 
@@ -26,4 +26,5 @@ public class SystemTest : MonoBehaviour
     {
         CardSystem.Instance.Setup(deckData);
     }
+    */
 }

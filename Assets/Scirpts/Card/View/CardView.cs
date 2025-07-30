@@ -11,6 +11,7 @@ public class CardView : MonoBehaviour
 
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
+    [SerializeField] private LayerMask dropLayer;
 
     private Vector3 dragStartPosition;
     private Quaternion dragRotation;
@@ -59,9 +60,10 @@ public class CardView : MonoBehaviour
     private void OnMouseUp()
     {
         if (!CardInteraction.Instance.PlayerCanInteract()) return;
-        if (Physics.Raycast(transform.position,Vector3.forward,out RaycastHit hit , 10f))
+        if (ManaSystem.Instance.HasEnoughMana(Card.Mana) &&Physics.Raycast(transform.position,Vector3.forward,out RaycastHit hit , 10f,dropLayer))
         {
-
+            PlayCardGA playCardGA = new(Card);
+            ActionSystem.Instance.Perform(playCardGA);
         }
         else
         {
