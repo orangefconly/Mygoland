@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2125f6e4fac49f40a92d0edf3aac81f, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  <Description>k__BackingField: "deal 4 damage to an emeny.\u5FEB\u901F"
+  <Description>k__BackingField: "deal 20 damage to an emeny.\u5FEB\u901F"
   <Mana>k__BackingField: 2
   <Image>k__BackingField: {fileID: 21300000, guid: ed4ad7fb83c3cdd4baf55632c8dfb10e, type: 3}
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 3284261100482461702
+    <Effect>k__BackingField:
+      rid: 3284261100482461704
+  <ManualTargetEffect>k__BackingField:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3284261100482461702
+      type: {class: RandomEnemyTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 3284261100482461704
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 20

@@ -7,7 +7,8 @@ public class Card
     
     public string Title => cardData.name;
 
-    public List<Effect> Effects =>cardData.Effects;
+    public Effect ManualTargetEffects =>cardData.ManualTargetEffect;
+    public List<AutoTargetEffect> OtherEffects => cardData.OtherEffects;
     public string Description =>cardData.Description;
 
     public Sprite Image => cardData.Image;
