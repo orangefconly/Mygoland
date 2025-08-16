@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.U2D.Aseprite;
 
 public class CardView : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class CardView : MonoBehaviour
     private void OnMouseDown()
     {
         if (!CardInteraction.Instance.PlayerCanInteract()) return;
+        if (Card.ManualTargetEffect != null)
+        {
+            ManualTargetSystem.Instance.StartTageting(transform.position);
+        }
+        else
+        {
         CardInteraction.Instance.PlayerIsDragging = true;
         wrapper.SetActive(true);
         CardViewHoverSystem.Instance.Hide();
@@ -51,26 +58,42 @@ public class CardView : MonoBehaviour
         dragStartPosition = transform.position;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
+        }
+
     }
     private void OnMouseDrag()
    {
         if (!CardInteraction.Instance.PlayerCanInteract()) return;
+        if (Card.ManualTargetEffect != null) return;
         transform.position = MouseUtil.GetMousePositionInWorldSpace(-1);
     }
     private void OnMouseUp()
     {
         if (!CardInteraction.Instance.PlayerCanInteract()) return;
-        if (ManaSystem.Instance.HasEnoughMana(Card.Mana) &&Physics.Raycast(transform.position,Vector3.forward,out RaycastHit hit , 10f,dropLayer))
+        if (Card.ManualTargetEffect != null)
         {
-            PlayCardGA playCardGA = new(Card);
-            ActionSystem.Instance.Perform(playCardGA);
+            EnemyView target = ManualTargetSystem.Instance.EndTargeting(MouseUtil.GetMousePositionInWorldSpace(-1));
+            if (target != null && ManaSystem.Instance.HasEnoughMana(Card.Mana))
+            {
+                PlayCardGA playCardGA = new(Card, target);
+                ActionSystem.Instance.Perform(playCardGA);
+            }
         }
-        else
+        else 
         {
-            transform.position = dragStartPosition;
-            transform.rotation = dragRotation;
+            if (ManaSystem.Instance.HasEnoughMana(Card.Mana) &&Physics.Raycast(transform.position,Vector3.forward,out RaycastHit hit , 10f,dropLayer))
+            {
+                PlayCardGA playCardGA = new(Card);
+                ActionSystem.Instance.Perform(playCardGA);
+            }
+            else
+            {
+                transform.position = dragStartPosition;
+                transform.rotation = dragRotation;
+            }
+            CardInteraction.Instance.PlayerIsDragging =false;            
         }
-        CardInteraction.Instance.PlayerIsDragging =false;
+
     }
    
 }

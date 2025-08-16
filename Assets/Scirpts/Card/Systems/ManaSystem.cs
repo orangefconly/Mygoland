@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,11 @@ public class ManaSystem : Singleton<ManaSystem>
     }
     public bool HasEnoughMana(int mana)
     {
-      return mana <= currentMana;
+        if (currentMana < mana)
+        {
+            manaUI.LackManaWarning();
+        }
+        return mana <= currentMana;
     }
     private IEnumerator SpendManaPerformer(SpendManaGA spendManaGA)
     {

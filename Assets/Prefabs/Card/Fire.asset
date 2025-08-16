@@ -15,22 +15,13 @@ MonoBehaviour:
   <Description>k__BackingField: "deal 20 damage to an emeny.\u5FEB\u901F"
   <Mana>k__BackingField: 2
   <Image>k__BackingField: {fileID: 21300000, guid: ed4ad7fb83c3cdd4baf55632c8dfb10e, type: 3}
-  <OtherEffects>k__BackingField:
-  - <TargetMode>k__BackingField:
-      rid: 3284261100482461702
-    <Effect>k__BackingField:
-      rid: 3284261100482461704
+  <OtherEffects>k__BackingField: []
   <ManualTargetEffect>k__BackingField:
-    rid: -2
+    rid: 3284261168474226688
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 3284261100482461702
-      type: {class: RandomEnemyTM, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 3284261100482461704
+    - rid: 3284261168474226688
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
         damageAmount: 20

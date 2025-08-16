@@ -94,6 +94,12 @@ public class CardSystem : Singleton<CardSystem>
         SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
         ActionSystem.Instance.AddRection(spendManaGA);
 
+        if (playCardGA.Card.ManualTargetEffect != null)
+        {
+            PerformEffectGA performEffectGA = new(playCardGA.Card.ManualTargetEffect, new() { playCardGA.ManualTarget });
+            ActionSystem.Instance.AddRection(performEffectGA);
+        }
+
         foreach (var effectWrapper in playCardGA.Card.OtherEffects)
         {
             List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
